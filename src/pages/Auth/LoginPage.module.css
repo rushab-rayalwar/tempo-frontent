@@ -1,0 +1,55 @@
+.form{
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+    padding:2rem;
+    border-radius: 2rem;
+}
+.form input {
+    padding:1rem;
+    border-radius:1rem;
+    /* border : 1px solid black; */
+    outline: none;  
+}
+.form input:focus{
+    outline:none;
+}
+.form button{
+    appearance: none;
+    border: 1px solid var(--secondary);
+    border-radius: 1rem;
+    padding:1rem;
+    /* background-color: var(--tertiary); */
+    background-color: var(--secondary);
+    color:white;
+}
+
+
+.titleContainer{
+    position:absolute;
+    bottom: 100%;
+}
+.title{
+    font-size: 5rem;
+    font-family: "Plus Jakarta Sans";
+    color: var(--background);
+    top : 0rem;
+}
+.tagLine {
+    font-family: "Merriweather";
+}
+
+.loginPageContainer{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer{
+    position : relative;
+    background-color: blueviolet;
+    max-width: 90%;
+    width: 20rem;
+}

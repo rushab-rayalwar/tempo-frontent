@@ -1,0 +1,19 @@
+/* FONTS */
+
+/* Merriweather, Plus Jakarta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root{
+    --background  : #35858E;
+    --tertiary : #7DA78C;
+    --secondary : #C2D099;
+    --primary: #E6EEC9;
+    /* --primary : #EBF4DD;
+    --secondary : #90AB8B;
+    --tertiary : #5A7863;
+    --background : #3B4953; */
+}
+
+body{
+    margin:0;
+}
