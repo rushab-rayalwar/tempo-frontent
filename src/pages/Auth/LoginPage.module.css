@@ -8,7 +8,7 @@
 .form input {
     padding:1rem;
     border-radius:1rem;
-    /* border : 1px solid black; */
+    border : 0px solid black;
     outline: none;  
 }
 .form input:focus{
@@ -19,24 +19,36 @@
     border: 1px solid var(--secondary);
     border-radius: 1rem;
     padding:1rem;
-    /* background-color: var(--tertiary); */
     background-color: var(--secondary);
+    /* background-color: var(--secondary); */
     color:white;
+    cursor : pointer;
 }
 
 
 .titleContainer{
     position:absolute;
     bottom: 100%;
+    width:100%;
 }
 .title{
     font-size: 5rem;
-    font-family: "Plus Jakarta Sans";
     color: var(--background);
     top : 0rem;
+    /* font-family: "Merriweather"; */
+    font-family: "Plus Jakarta Sans";
+    /* font-style: italic; */
+    /* font-family: "Montserrat"; */
+    font-family: "Montserrat";
+
+    width:100%;
 }
 .tagLine {
+    /* font-family: "Plus Jakarta Sans"; */
+    font-style: italic;
     font-family: "Merriweather";
+    /* color: var(--tertiary); */
+    color: var(--tertiary);
 }
 
 .loginPageContainer{
@@ -49,7 +61,38 @@
 
 .formContainer{
     position : relative;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     max-width: 90%;
     width: 20rem;
+}
+
+.loginPageContainer{
+    background-color: var(--secondary);
+    overflow: hidden;
+}
+
+.bgBlob{
+    height:15rem;
+    width:15rem;
+    background-color: var(--tertiary);
+    border-radius: 50%;
+    position:absolute;
+    animation: moveBlob 2s ease-in-out infinite alternate;
+    filter: blur(4rem);
+}
+
+@keyframes moveBlob {
+    0% {
+        top:0; right:2rem;
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        top: calc(10%); right: 0%;
+        transform: scale(1);
+    }
 }
