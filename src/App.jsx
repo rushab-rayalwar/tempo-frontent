@@ -6,8 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import "./styles/global.css";
 // pages / components -
 import LoginPage from './pages/Auth/LoginPage.jsx';
-import RegisterPage from './pages/Auth/registerPage.jsx';
-import Session from './pages/Session/Session.jsx';
+// import RegisterPage from './pages/Auth/registerPage.jsx';
+// import Session from './pages/Session/Session.jsx';
 
 function App() {
 
