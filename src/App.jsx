@@ -6,13 +6,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import "./styles/global.css";
 // pages / components -
 import LoginPage from './pages/Auth/LoginPage.jsx';
-// import RegisterPage from './pages/Auth/registerPage.jsx';
-// import Session from './pages/Session/Session.jsx';
+import RegisterPage from './pages/Auth/registerPage.jsx';
+import Session from './pages/Session/Session.jsx';
 
 function App() {
 
   const router = createBrowserRouter([
-    // { path:"*", element:<h1>Page Not Found!</h1>},
+    // { path:"*", element:<h1>Page Not Foxund!</h1>},
     { 
       path:"*",
       element: <LoginPage/>
