@@ -17,6 +17,8 @@
     --secondary : #FFF0E4;
     --primary: #FFE0C5;
     --contrary: #FFE0C5;
+
+    overflow: hidden;
 }
 
 body{
