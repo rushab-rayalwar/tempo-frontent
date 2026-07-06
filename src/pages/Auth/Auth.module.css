@@ -30,6 +30,7 @@
     background-color: var(--background);
     /* font-family: "Merriweather"; */
     font-family: "Plus Jakarta Sans";
+    transition: background-color 0.25s ease-in-out;
 }
 .form button:hover{
     background-color: var(--tertiary);
@@ -125,13 +126,25 @@
     text-align: center;
     color:black;
 }
-.footer > span {
+.footer > span,
+.footer > a {
     color: var(--background);
+    text-decoration: none;
 }
-.footer > span:hover {
+.footer > span:hover,
+.footer > a:hover {
     color: var(--tertiary);
     text-decoration: underline;
     cursor: pointer;
+}
+
+.errorText {
+    color: red;
+    font-size: 0.7rem;
+    font-family: "Plus Jakarta Sans";
+    margin-top: -1.2rem;
+    margin-left: 0.5rem;
+    align-self: flex-start;
 }
 
 @keyframes moveBlob {
@@ -167,3 +180,4 @@
         transform: rotate(360deg);
     }
 }
+
