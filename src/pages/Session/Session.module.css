@@ -1,0 +1,225 @@
+.sessionPageContainer {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem;
+    transition: background-color 0.5s ease;
+}
+
+.sessionPageContainer.running {
+    justify-content: center;
+}
+
+.sessionPageContainer.stopped {
+    justify-content: flex-start;
+    padding-top: 5vh;
+}
+
+.timerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.timer {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--background);
+    font-weight: 800;
+    font-size: 4rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.sessionName {
+    color: var(--background);
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+.toggleButton {
+    background-color: var(--background);
+    color: var(--secondary);
+    border: none;
+    padding: 0.8rem 2.8rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-shadow: 0 4px 15px rgba(0, 121, 121, 0.2);
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.toggleButton:hover {
+    background-color: var(--tertiary);
+    transform: tra  nslateY(-2px);
+    box-shadow: 0 6px 20px rgba(36, 177, 177, 0.3);
+}
+
+.toggleButton:active {
+    transform: translateY(0);
+}
+
+.toggleButton.stopBtn {
+    background-color: #d64531;
+    box-shadow: 0 4px 15px rgba(214, 69, 49, 0.2);
+}
+
+.toggleButton.stopBtn:hover {
+    background-color: #bc3623;
+    box-shadow: 0 6px 20px rgba(188, 54, 35, 0.3);
+}
+
+/* History Styles */
+.historyContainer {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: calc(100% - 4rem);
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 1.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-height: 52vh;
+    box-sizing: border-box;
+}
+
+.historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 121, 121, 0.1);
+    padding-bottom: 0.8rem;
+}
+
+.historyTitle {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--background);
+    margin: 0;
+}
+
+.historyStats {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--tertiary);
+    background: rgba(36, 177, 177, 0.08);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+}
+
+.historyList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+/* Custom scrollbar for premium look */
+.historyList::-webkit-scrollbar {
+    width: 6px;
+}
+.historyList::-webkit-scrollbar-track {
+    background: transparent;
+}
+.historyList::-webkit-scrollbar-thumb {
+    background: rgba(0, 121, 121, 0.15);
+    border-radius: 10px;
+}
+.historyList::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 121, 121, 0.3);
+}
+
+.historyCard {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+}
+
+.historyCard:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 16px rgba(0, 121, 121, 0.05);
+    border-color: rgba(36, 177, 177, 0.2);
+}
+
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardName {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--background);
+}
+
+.cardDuration {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--background);
+    background: rgba(0, 121, 121, 0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.cardDate {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.cardNotes {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.4;
+    margin: 0.2rem 0 0 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.icon {
+    flex-shrink: 0;
+    color: var(--tertiary);
+}

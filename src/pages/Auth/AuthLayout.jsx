@@ -78,7 +78,7 @@ export default function AuthLayout(){
                     <div className={styles.titleContainer}>
                         <motion.div
                             className={styles.title}
-                            transition = {{opacity:{duration:3, type:"ease"}}}
+                            transition = {{opacity:{duration:1, type:"ease"}}}
                             initial = {{opacity:0}}
                             animate = {{opacity:1}}
                         >   

@@ -25,13 +25,19 @@ const authSlice = createSlice({
     },
     extraReducers : (builder)=>{
         builder
+            .addCase(loginThunk.pending, (state) => {
+                state.isLoggedIn = false;
+                state.errors = [];
+            })
             .addCase(loginThunk.fulfilled, (state, action)=>{
                 state.isLoggedIn = true;
                 state.user = action.payload.data;
+                state.errors = [];
             })
             .addCase(loginThunk.rejected, (state, action)=>{
                 state.isLoggedIn = false;
                 state.user = null;
+                state.errors = action.payload?.errors || ["Something went wrong!"];
             })
             .addCase(registerThunk.pending, (state) => {
                 state.isRegistered = false;

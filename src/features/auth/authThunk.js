@@ -8,11 +8,14 @@ const loginThunk = createAsyncThunk(
     'auth/login',
     async ( credentials , thunkAPI )=>{
         try {
-            let response = await api.post(import.meta.VITE_API_BASE_URL+"/api/user/login", credentials);
+            let response = await api.post(import.meta.env.VITE_API_BASE_URL+"/api/user/login", credentials);
             console.log('RESPONSE', response);
             return response;
         } catch(error) {
-            return thunkAPI.rejectWithValue(error);
+            if (error.response && error.response.data) {
+                return thunkAPI.rejectWithValue(error.response.data);
+            }
+            return thunkAPI.rejectWithValue({ success: false, errors: ["Something went wrong!"] });
         }
     }
 );
