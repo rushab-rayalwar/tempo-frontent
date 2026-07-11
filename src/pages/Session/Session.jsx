@@ -45,6 +45,8 @@ function generateRandomCoordinates() {
     return { top, left };   
 }
 
+const layoutTransition = { type: "spring", stiffness: 50, damping: 20 };
+
 export default function Session() {
 
     const intervalId = useRef(null);
@@ -54,6 +56,7 @@ export default function Session() {
     const [timeElapsed, setTimeElapsed] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [blobs, setBlobs] = useState([]);
+    const [history, setHistory] = useState(DUMMY_HISTORY);
 
     // Generate background blobs on start
     useEffect(() => {
@@ -140,6 +143,7 @@ export default function Session() {
     }
 
     function resetTimer() {
+        setIsRunning(false);
         setTimeElapsed(0);
         timeAccumulatedBeforePause.current = 0;
         setBlobs([]);
@@ -147,6 +151,23 @@ export default function Session() {
     
     function toggleTimer() {
         setIsRunning(prev=>!!!prev);
+    }
+
+    function finishSession() {
+        if (timeElapsed === 0) return;
+        setIsRunning(false);
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const dateStr = `Today, ${timeStr}`;
+        const newSession = {
+            id: Date.now(),
+            sessionName: "Guitar Practice",
+            date: dateStr,
+            duration: timerString,
+            notes: "Session finished and recorded successfully."
+        };
+        setHistory(prev => [newSession, ...prev]);
+        resetTimer();
     }
 
     return (
@@ -174,26 +195,69 @@ export default function Session() {
 
                 <motion.div 
                     layout
-                    transition={{ type: "spring", stiffness: 100, damping: 16 }}
+                    transition={layoutTransition}
                     className={styles.timerContainer}
                 >
-                    <motion.div layout className={styles.sessionName}>Guitar</motion.div>
+                    <motion.div 
+                        layout 
+                        transition={layoutTransition} 
+                        className={styles.sessionName}
+                    >
+                        Guitar
+                    </motion.div>
                     <motion.div 
                         layout 
                         className={styles.timer}
                         animate={{ scale: isRunning ? 1.5 : 1.0 }}
-                        transition={{ type: "spring", stiffness: 100, damping: 16 }}
+                        transition={layoutTransition}
                     >
                         {timerString}
                     </motion.div>
-                    <motion.button
-                         layout
-                        onClick={toggleTimer}
-                        className={`${styles.toggleButton} ${isRunning ? styles.stopBtn : ''}`}
-                        transition={{ type: "spring", stiffness: 100, damping: 16 }}
+                    <motion.div 
+                        layout 
+                        transition={layoutTransition} 
+                        className={styles.controlsRow}
                     >
-                        {isRunning ? 'Stop' : 'Start'}
-                    </motion.button>
+                        <motion.button
+                            layout
+                            transition={layoutTransition}
+                            onClick={resetTimer}
+                            className={`${styles.controlButton} ${styles.secondaryBtn}`}
+                            title="Reset Timer"
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <i className="fa-solid fa-rotate-left"></i>
+                        </motion.button>
+
+                        <motion.button
+                            layout
+                            transition={layoutTransition}
+                            onClick={toggleTimer}
+                            className={`${styles.controlButton} ${styles.playPauseBtn}`}
+                            title={isRunning ? "Pause" : "Start"}
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {isRunning ? (
+                                <i className="fa-solid fa-pause"></i>
+                            ) : (
+                                <i className="fa-solid fa-play" style={{ marginLeft: "3px" }}></i>
+                            )}
+                        </motion.button>
+
+                        <motion.button
+                            layout
+                            transition={layoutTransition}
+                            onClick={finishSession}
+                            className={`${styles.controlButton} ${styles.secondaryBtn}`}
+                            title="Finish Session"
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <i className="fa-solid fa-check"></i>
+                        </motion.button>
+                    </motion.div>
                 </motion.div>
 
                 <AnimatePresence>
@@ -202,15 +266,15 @@ export default function Session() {
                             initial={{ y: "100vh", opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: "100vh", opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 100, damping: 16 }}
+                            transition={{ type: "spring", stiffness: 50, damping: 20 }}
                             className={styles.historyContainer}
                         >
                             <div className={styles.historyHeader}>
                                 <h3 className={styles.historyTitle}>Session History</h3>
-                                <span className={styles.historyStats}>4 completed</span>
+                                <span className={styles.historyStats}>{history.length} completed</span>
                             </div>
                             <div className={styles.historyList}>
-                                {DUMMY_HISTORY.map((session) => (
+                                {history.map((session) => (
                                     <div key={session.id} className={styles.historyCard}>
                                         <div className={styles.cardTop}>
                                             <span className={styles.cardName}>{session.sessionName}</span>

@@ -52,39 +52,72 @@
     opacity: 0.9;
 }
 
-.toggleButton {
+.controlsRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    z-index: 10;
+}
+
+.controlButton {
     background-color: var(--background);
     color: var(--secondary);
     border: none;
-    padding: 0.8rem 2.8rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 50px;
     cursor: pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    box-shadow: 0 4px 15px rgba(0, 121, 121, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
     transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
 
-.toggleButton:hover {
+.playPauseBtn {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.playPauseBtn:hover {
     background-color: var(--tertiary);
-    transform: tra  nslateY(-2px);
-    box-shadow: 0 6px 20px rgba(36, 177, 177, 0.3);
+    /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); */
 }
 
-.toggleButton:active {
-    transform: translateY(0);
+.secondaryBtn {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    opacity: 0.85;
 }
 
-.toggleButton.stopBtn {
-    background-color: #d64531;
-    box-shadow: 0 4px 15px rgba(214, 69, 49, 0.2);
+.secondaryBtn:hover {
+    background-color: var(--tertiary);
+    opacity: 1;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.toggleButton.stopBtn:hover {
-    background-color: #bc3623;
-    box-shadow: 0 6px 20px rgba(188, 54, 35, 0.3);
+/* .finishBtn {
+    background-color: var(--tertiary);
+    color: var(--secondary);
 }
+
+.finishBtn:hover {
+    background-color: var(--primary);
+    color: var(--background);
+} */
+
+/* .stopBtn {
+    background-color: var(--tertiary);
+    color: var(--secondary);
+}
+
+.stopBtn:hover {
+    background-color: var(--primary);
+    color: var(--background);
+} */
 
 /* History Styles */
 .historyContainer {
@@ -95,14 +128,14 @@
     margin: 0 auto;
     width: calc(100% - 4rem);
     max-width: 600px;
-    background: rgba(255, 255, 255, 0.65);
+    /* background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5); */
     border-radius: 24px;
     padding: 1.8rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6); */
     display: flex;
     flex-direction: column;
     gap: 1.2rem;

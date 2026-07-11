@@ -3,3 +3,16 @@ When the timer is running and the time updates, the layout wobbles or jitters. T
 
 Solution:
 We resolved this by adding `font-variant-numeric: tabular-nums;` to the `.timer` CSS class. This CSS property forces numeric characters to render with a uniform, equal width (acting like monospaced digits), thereby keeping the overall text width stable and stopping the wobbling during updates.
+
+Problem Encountered:
+When the timer was playing, clicking the "Stop" button would shrink and slide the timer to the top, and the session history panel would slide up from the bottom. This transition was smooth.
+However, when the timer was paused (stopped) and we clicked "Start" to resume it:
+- The timer scaled up and centered itself.
+- The history panel started sliding down out of the viewport.
+- The moment the history panel finished its slide-down animation and was completely unmounted from the DOM by React, the timer container would abruptly jump or snap to the center of the viewport instead of completing its slide animation smoothly.
+
+Why it happened:
+The page container used CSS Flexbox to align elements. During the history panel's exit animation, React/Framer Motion kept the history container in the DOM so it could perform its slide-down visual transition. Because it was a regular block element inside the Flexbox container, its height slot was factored into the vertical centering calculations of the page. Once the exit animation completed and the element was unmounted, its height slot collapsed instantly, causing the timer container to abruptly snap to the true center of the viewport.
+
+How it was solved:
+We set the history container to use absolute positioning (position: absolute; bottom: 2rem; left: 0; right: 0; margin: 0 auto;). Because it is absolutely positioned, it is taken out of the normal flexbox document flow. The browser calculates the center of the screen based solely on the timer container. Now, when the history panel exits the DOM, its unmounting has zero effect on the page layout, allowing the timer to animate to the center of the screen with absolute smoothness.
