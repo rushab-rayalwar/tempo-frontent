@@ -36,6 +36,15 @@ const DUMMY_HISTORY = [
     },
 ];
 
+function generateRandomCoordinates() {
+    let top, left;
+    do {
+        top = Math.random() * 90 + 5;  // 10% to 90%
+        left = Math.random() * 90 + 5; // 10% to 90%
+    } while (top > 25 && top < 75 && left > 25 && left < 75); // Avoid the center 40% area
+    return { top, left };   
+}
+
 export default function Session() {
 
     const intervalId = useRef(null);
@@ -44,6 +53,43 @@ export default function Session() {
     const [timerString, setTimerString] = useState('00:00:00');
     const [timeElapsed, setTimeElapsed] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const [blobs, setBlobs] = useState([]);
+
+    // Generate background blobs on start
+    useEffect(() => {
+        if (isRunning && blobs.length === 0) {
+            const newBlobs = Array.from({ length: 15 }).map((_, i) => {
+                const { top, left } = generateRandomCoordinates();
+                const diameter = Math.random() * 5 + 2; // 4rem to 9rem
+                // const duration = Math.random() * 8 + 10; // 10s to 18s
+                const duration = Math.random() * 3 + 10; // 10s to 18s
+
+                // const delay = Math.random() * 6; // 0s to 6s
+                const delay = Math.random() * 5; // 0s to 6s
+
+                // const blur = Math.random() * 2 + 2; // 2rem to 4rem
+                const blur = Math.random() * 1 + 0.2 ; // 2rem to 4rem
+
+                
+                // Random floating displacement
+                const dx = (Math.random() - 0.5) * 40; // -20vw to 20vw
+                const dy = (Math.random() - 0.5) * 40; // -20vh to 20vh
+                
+                return {
+                    id: i,
+                    top,
+                    left,
+                    diameter,
+                    duration,
+                    delay,
+                    blur,
+                    dx: `${dx}vw`,
+                    dy: `${dy}vh`
+                };
+            });
+            setBlobs(newBlobs);
+        }
+    }, [isRunning, blobs.length]);
 
     // handles interval
     useEffect(
@@ -96,6 +142,7 @@ export default function Session() {
     function resetTimer() {
         setTimeElapsed(0);
         timeAccumulatedBeforePause.current = 0;
+        setBlobs([]);
     }
     
     function toggleTimer() {
@@ -105,6 +152,26 @@ export default function Session() {
     return (
         <> 
             <div className={`${styles.sessionPageContainer} ${isRunning ? styles.running : styles.stopped}`}>
+                {/* Render background blobs */}
+                {blobs.map((b) => (
+                    <div
+                        key={b.id}
+                        className={styles.sessionBlob}
+                        style={{
+                            top: `${b.top}%`,
+                            left: `${b.left}%`,
+                            height: `${b.diameter}rem`,
+                            width: `${b.diameter}rem`,
+                            filter: `blur(${b.blur}rem)`,
+                            animationDuration: `${b.duration}s`,
+                            animationDelay: `${b.delay}s`,
+                            animationPlayState: isRunning ? 'running' : 'paused',
+                            '--dx': b.dx,
+                            '--dy': b.dy,
+                        }}
+                    />
+                ))}
+
                 <motion.div 
                     layout
                     transition={{ type: "spring", stiffness: 100, damping: 16 }}
@@ -120,7 +187,7 @@ export default function Session() {
                         {timerString}
                     </motion.div>
                     <motion.button
-                        layout
+                         layout
                         onClick={toggleTimer}
                         className={`${styles.toggleButton} ${isRunning ? styles.stopBtn : ''}`}
                         transition={{ type: "spring", stiffness: 100, damping: 16 }}

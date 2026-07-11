@@ -28,6 +28,10 @@
     justify-content: center;
     gap: 1.5rem;
     z-index: 10;
+    /* background-color: rgb(255,255,255,0.3);
+    padding:3rem;
+    backdrop-filter: blur(1rem);
+    border-radius:2rem; */
 }
 
 .timer {
@@ -83,7 +87,7 @@
 
 /* History Styles */
 .historyContainer {
-    position: absolute;
+    position: absolute; z-index:1;
     bottom: 2rem;
     left: 0;
     right: 0;
@@ -222,4 +226,35 @@
 .icon {
     flex-shrink: 0;
     color: var(--tertiary);
+}
+
+/* Background Session Blobs */
+.sessionBlob {
+    position: absolute;
+    background-color: var(--tertiary);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatAndFade linear infinite;
+}
+
+@keyframes floatAndFade {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.9);
+    }
+    /* 15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    } */
+    50% {
+        opacity:1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(1.1);
+    }
 }
