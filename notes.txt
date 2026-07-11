@@ -1,0 +1,5 @@
+Problem:
+When the timer is running and the time updates, the layout wobbles or jitters. This occurs because the font used ('Plus Jakarta Sans') renders different digits with different widths (e.g., "1" is narrower than "8"). Since the timer container and text elements use Framer Motion's `layout` prop, Framer Motion automatically animates the layout/width adjustments on every second tick.
+
+Solution:
+We resolved this by adding `font-variant-numeric: tabular-nums;` to the `.timer` CSS class. This CSS property forces numeric characters to render with a uniform, equal width (acting like monospaced digits), thereby keeping the overall text width stable and stopping the wobbling during updates.
