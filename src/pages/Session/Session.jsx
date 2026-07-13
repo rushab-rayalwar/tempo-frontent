@@ -196,12 +196,13 @@ export default function Session() {
                 <motion.div 
                     layout
                     transition={layoutTransition}
-                    className={styles.timerContainer}
+                    className={isRunning ? `${styles.timerContainer} ${styles.running}` : `${styles.timerContainer} ${styles.stopped}`}
                 >
                     <motion.div 
                         layout 
                         transition={layoutTransition} 
                         className={styles.sessionName}
+                        animate={{scale : isRunning ? 1 : 0.8}}
                     >
                         Guitar
                     </motion.div>
@@ -216,7 +217,7 @@ export default function Session() {
                     <motion.div 
                         layout 
                         transition={layoutTransition} 
-                        className={styles.controlsRow}
+                        className={isRunning ? `${styles.controlsRow} ${styles.running}` : `${styles.controlsRow} ${styles.stopped}`}
                     >
                         <motion.button
                             layout
@@ -224,8 +225,8 @@ export default function Session() {
                             onClick={resetTimer}
                             className={`${styles.controlButton} ${styles.secondaryBtn}`}
                             title="Reset Timer"
-                            whileHover={{ scale: 1.08 }}
-                            whileTap={{ scale: 0.95 }}
+                            // whileHover={{ scale: 1.08 }}
+                            // whileTap={{ scale: 0.95 }}
                         >
                             <i className="fa-solid fa-rotate-left"></i>
                         </motion.button>
@@ -236,8 +237,8 @@ export default function Session() {
                             onClick={toggleTimer}
                             className={`${styles.controlButton} ${styles.playPauseBtn}`}
                             title={isRunning ? "Pause" : "Start"}
-                            whileHover={{ scale: 1.08 }}
-                            whileTap={{ scale: 0.95 }}
+                            // whileHover={{ scale: 1.08 }}
+                            // whileTap={{ scale: 0.95 }}
                         >
                             {isRunning ? (
                                 <i className="fa-solid fa-pause"></i>
@@ -252,8 +253,8 @@ export default function Session() {
                             onClick={finishSession}
                             className={`${styles.controlButton} ${styles.secondaryBtn}`}
                             title="Finish Session"
-                            whileHover={{ scale: 1.08 }}
-                            whileTap={{ scale: 0.95 }}
+                            // whileHover={{ scale: 1.08 }}
+                            // whileTap={{ scale: 0.95 }}
                         >
                             <i className="fa-solid fa-check"></i>
                         </motion.button>
@@ -266,7 +267,7 @@ export default function Session() {
                             initial={{ y: "100vh", opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: "100vh", opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 50, damping: 20 }}
+                            transition={{ type: "spring", stiffness: 50, damping: 22 }}
                             className={styles.historyContainer}
                         >
                             <div className={styles.historyHeader}>

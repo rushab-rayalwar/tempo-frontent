@@ -1,7 +1,8 @@
 .sessionPageContainer {
     height: 100vh;
     width: 100vw;
-    background-color: var(--secondary);
+    /* background-color: var(--secondary); */
+    background: linear-gradient(to right, var(--primary), var(--secondary) 15% 85%, var(--primary));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,18 +27,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
     z-index: 10;
-    /* background-color: rgb(255,255,255,0.3);
-    padding:3rem;
-    backdrop-filter: blur(1rem);
-    border-radius:2rem; */
+    width: 27rem;
+    border-radius: 2rem;
+    padding: 2rem;
+    transition: background-color 2s ease-in-out;
+}
+.timerContainer.running{
+    gap : 2.5rem;
+    background-color: rgba(255,255,255,0);
+}
+.timerContainer.stopped{
+    gap : 0.5rem;
+    backdrop-filter: blur(2rem);
+    background-color: rgba(255,255,255,0.3);
 }
 
 .timer {
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: var(--background);
-    font-weight: 800;
+    font-weight: 200;
     font-size: 4rem;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -46,9 +55,10 @@
 
 .sessionName {
     color: var(--background);
-    font-family: 'Merriweather', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
+    /* font-family: 'Merriweather', serif; */
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-weight: 400;
     opacity: 0.9;
 }
 
@@ -56,9 +66,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
     margin-top: 1rem;
     z-index: 10;
+}
+.controlsRow.running{
+    gap: 2rem;
+}
+.controlsRow.stopped{
+    gap: 1rem;
 }
 
 .controlButton {
@@ -71,11 +86,12 @@
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
     transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    opacity: 0.8;
 }
 
 .playPauseBtn {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     font-size: 1.5rem;
 }
@@ -86,11 +102,11 @@
 }
 
 .secondaryBtn {
-    width: 3.2rem;
-    height: 3.2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     border-radius: 50%;
     font-size: 1.1rem;
-    opacity: 0.85;
+    /* opacity: 0.85; */
 }
 
 .secondaryBtn:hover {
@@ -152,9 +168,10 @@
 }
 
 .historyTitle {
-    font-family: 'Merriweather', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
+    /* font-family: 'Merriweather', serif; */
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-weight: 300;
     color: var(--background);
     margin: 0;
 }
@@ -162,7 +179,7 @@
 .historyStats {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--tertiary);
     background: rgba(36, 177, 177, 0.08);
     padding: 0.3rem 0.8rem;
@@ -219,14 +236,14 @@
 
 .cardName {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 300;
     font-size: 1.05rem;
     color: var(--background);
 }
 
 .cardDuration {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 0.9rem;
     color: var(--background);
     background: rgba(0, 121, 121, 0.08);
@@ -271,6 +288,11 @@
     pointer-events: none;
     z-index: 1;
     animation: floatAndFade linear infinite;
+}
+
+button:focus {
+    outline : none;
+    border : none;
 }
 
 @keyframes floatAndFade {
