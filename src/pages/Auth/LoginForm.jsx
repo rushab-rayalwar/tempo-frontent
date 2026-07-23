@@ -99,7 +99,8 @@ export default function LoginForm(){
 
     return (
         <motion.form 
-            className={`${styles.form} glass`}
+            // className={`${styles.form} glass`}
+            className={`${styles.form}`}
             onSubmit={handleSubmit}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

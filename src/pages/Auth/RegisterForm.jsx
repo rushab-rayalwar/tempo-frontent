@@ -124,7 +124,8 @@ export default function RegisterForm() {
 
     return (
         <motion.form 
-            className={`${styles.form} glass`}
+            // className={`${styles.form} glass`}
+            className={`${styles.form}`}
             onSubmit={handleSubmit}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -1,0 +1,4 @@
+.dashboardContainer{
+    background: linear-gradient(to right, var(--primary), var(--secondary) 15% 85%, var(--primary));
+    height: 100vh; width: 100vw;
+}

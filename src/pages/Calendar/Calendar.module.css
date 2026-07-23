@@ -1,0 +1,350 @@
+.calendarPageContainer {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right, var(--primary), var(--secondary) 15% 85%, var(--primary));
+    /* background-color: var(--primary); */
+    display: flex;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem;
+}
+
+.mainLayout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+/* Calendar Section Layout */
+.calendarSectionFull {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendarSectionShrunk {
+    width: clamp(300px, 28vw, 380px);
+    margin-left: 0;
+    margin-right: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendarCard {
+    height: 100%;
+    width: 100%;
+    border-radius: 1.5rem;
+    padding: 1.2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); */
+}
+
+/* Sessions Panel (Absolute positioned right side so exit animation does not jump calendar) */
+.sessionsPanel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: calc(clamp(300px, 28vw, 380px) + 1rem);
+    height: 100%;
+    border-radius: 24px;
+    padding: 1.8rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    z-index: 5;
+}
+
+.panelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.8rem;
+    /* border-bottom: 1px solid rgba(0, 121, 121, 0.1); */
+}
+
+.panelTitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--background);
+    margin: 0;
+}
+
+.panelSubtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 300;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.statsBadge {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--tertiary);
+    background: rgba(36, 177, 177, 0.12);
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+}
+
+.closeBtn {
+    background: rgba(0, 121, 121, 0.08);
+    color: var(--background);
+    border: none;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+    background: var(--tertiary);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Session List (Exact styling as Session.jsx) */
+.historyList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    flex: 1;
+}
+
+.historyList::-webkit-scrollbar {
+    width: 6px;
+}
+.historyList::-webkit-scrollbar-track {
+    background: transparent;
+}
+.historyList::-webkit-scrollbar-thumb {
+    background: rgba(0, 121, 121, 0.15);
+    border-radius: 10px;
+}
+.historyList::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 121, 121, 0.3);
+}
+
+.historyCard {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+}
+
+.historyCard:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 16px rgba(0, 121, 121, 0.05);
+    border-color: rgba(36, 177, 177, 0.2);
+}
+
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardName {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--background);
+}
+
+.cardDuration {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--background);
+    background: rgba(0, 121, 121, 0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.cardDate {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.cardNotes {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.4;
+    margin: 0.2rem 0 0 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.icon {
+    flex-shrink: 0;
+    color: var(--tertiary);
+}
+
+.emptyState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #666;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+}
+
+/* FULLCALENDAR CUSTOM THEME OVERRIDES & RESPONSIVE FIXES */
+:global(.fc) {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    height: 100% !important;
+    width: 100% !important;
+    --fc-border-color: rgba(0, 121, 121, 0.12) !important;
+    --fc-button-text-color: var(--background) !important;
+    --fc-button-bg-color: rgba(255, 255, 255, 0.6) !important;
+    --fc-button-border-color: rgba(255, 255, 255, 0.8) !important;
+    --fc-button-hover-bg-color: var(--primary) !important;
+    --fc-button-active-bg-color: var(--tertiary) !important;
+    --fc-today-bg-color: rgba(36, 177, 177, 0.1) !important;
+}
+
+/* Ensure table always scales to fill width evenly without hiding columns */
+:global(.fc-scrollgrid), 
+:global(.fc-scrollgrid-sync-table), 
+:global(.fc-daygrid-body), 
+:global(.fc-daygrid-body table),
+:global(.fc-col-header) {
+    width: 100% !important;
+    table-layout: fixed !important;
+}
+
+:global(.fc .fc-toolbar) {
+    margin-bottom: 0.8rem !important;
+    gap: 0.5rem !important;
+}
+
+:global(.fc .fc-button-group) {
+    display: inline-flex !important;
+    gap: 0.5rem !important;
+}
+
+:global(.fc .fc-button-group > .fc-button) {
+    border-radius: 12px !important;
+    margin-left: 0 !important;
+}
+
+:global(.fc .fc-toolbar-title) {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    color: var(--background) !important;
+    white-space: nowrap !important;
+}
+
+:global(.fc .fc-button) {
+    border-radius: 12px !important;
+    padding: 0.35rem 0.65rem !important;
+    font-weight: 500 !important;
+    font-size: 0.8rem !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+    text-transform: capitalize !important;
+    transition: all 0.2s ease !important;
+}
+
+:global(.fc .fc-col-header-cell) {
+    padding: 0.4rem 0 !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: var(--background) !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+}
+
+:global(.fc .fc-col-header-cell-cushion) {
+    padding: 2px 0 !important;
+    text-decoration: none !important;
+    color: var(--background) !important;
+}
+
+:global(.fc-theme-standard td), :global(.fc-theme-standard th) {
+    border-color: rgba(0, 121, 121, 0.1) !important;
+}
+
+:global(.fc .fc-daygrid-day) {
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+}
+
+:global(.fc .fc-daygrid-day:hover) {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+:global(.fc .fc-daygrid-day-number) {
+    color: var(--background) !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    padding: 2px 4px !important;
+    text-decoration: none !important;
+}
+
+:global(.fc .fc-daygrid-day-frame) {
+    min-height: 40px !important;
+    padding: 2px !important;
+}
+
+:global(.fc .fc-event) {
+    background-color: var(--tertiary) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    color: white !important;
+    font-size: 0.7rem !important;
+    font-weight: 500 !important;
+    padding: 1px 4px !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+:global(.fc .fc-event:hover) {
+    background-color: var(--background) !important;
+}

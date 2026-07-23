@@ -196,7 +196,7 @@ export default function Session() {
                 <motion.div 
                     layout
                     transition={layoutTransition}
-                    className={isRunning ? `${styles.timerContainer} ${styles.running}` : `${styles.timerContainer} ${styles.stopped}`}
+                    className={isRunning ? `${styles.timerContainer} ${styles.running}` : `${styles.timerContainer} ${styles.stopped} glass`}
                 >
                     <motion.div 
                         layout 
@@ -268,7 +268,7 @@ export default function Session() {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: "100vh", opacity: 0 }}
                             transition={{ type: "spring", stiffness: 50, damping: 22 }}
-                            className={styles.historyContainer}
+                            className={`${styles.historyContainer} glass`}
                         >
                             <div className={styles.historyHeader}>
                                 <h3 className={styles.historyTitle}>Session History</h3>
@@ -276,7 +276,7 @@ export default function Session() {
                             </div>
                             <div className={styles.historyList}>
                                 {history.map((session) => (
-                                    <div key={session.id} className={styles.historyCard}>
+                                    <div key={session.id} className={`${styles.historyCard} glass`}>
                                         <div className={styles.cardTop}>
                                             <span className={styles.cardName}>{session.sessionName}</span>
                                             <span className={styles.cardDuration}>

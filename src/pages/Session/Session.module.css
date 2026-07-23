@@ -28,10 +28,13 @@
     align-items: center;
     justify-content: center;
     z-index: 10;
-    width: 27rem;
+    /* width: 27rem; */
+    width: calc(100% - 4rem);
+    max-width: 600px;
+    box-sizing: border-box;
     border-radius: 2rem;
     padding: 2rem;
-    transition: background-color 2s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
 }
 .timerContainer.running{
     gap : 2.5rem;
@@ -39,8 +42,8 @@
 }
 .timerContainer.stopped{
     gap : 0.5rem;
-    backdrop-filter: blur(2rem);
-    background-color: rgba(255,255,255,0.3);
+    /* backdrop-filter: blur(2rem);
+    background-color: rgba(255,255,255,0.3); */
 }
 
 .timer {
@@ -163,7 +166,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 121, 121, 0.1);
+    /* border-bottom: 1px solid rgba(0, 121, 121, 0.1); */
     padding-bottom: 0.8rem;
 }
 
@@ -210,7 +213,7 @@
 }
 
 .historyCard {
-    background: rgba(255, 255, 255, 0.8);
+    /* background: rgba(255, 255, 255, 0.8); */
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 16px;
     padding: 1.2rem;
